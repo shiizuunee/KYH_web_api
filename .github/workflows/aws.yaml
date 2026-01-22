@@ -16,7 +16,7 @@ jobs:
             - name: Setup dotnet
               uses: actions/setup-dotnet@v3
               with:
-                  dotnet-version: '9.0'
+                  dotnet-version: '6.0'
             
             - name: Build project
               run: dotnet restore; dotnet publish -o site;
@@ -27,11 +27,11 @@ jobs:
             - name: Deploy to AWS EB
               uses: einaregilsson/beanstalk-deploy@v21
               with:
-                aws_access_key: ${{secrets.AWS_ACCESS_KEY_ID}}
-                aws_secret_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+                aws_access_key: ${{  secrets.AWS_ACCESS_KEY_ID  }}
+                aws_secret_key: ${{  secrets.AWS_SECRET_ACCESS_KEY  }}
                 application_name: calculator API
                 environment_name: CalculatorAPI-env
-                version_label: ${{github.run_id}}
+                version_label: ${{  github.run_id  }}
                 region: eu-north-1
                 deployment_package: site.zip
                 
